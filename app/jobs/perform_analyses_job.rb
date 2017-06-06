@@ -2,14 +2,15 @@ class PerformAnalysesJob < ActiveJob::Base
   queue_as :default
 
   def perform(report)
-    rails_best_practices_analysis = Analyses::RailsBestPracticesAnalysis.create!(report: report)
+    # rails_best_practices_analysis = Analyses::RailsBestPracticesAnalysis.create!(report: report)
     model_diagram_analysis = Analyses::ModelDiagramAnalysis.create!(report: report)
     code_coverage_analysis = Analyses::CodeCoverageAnalysis.create!(report: report)
 
     connection = VMConnection.new(report)
 
     begin
-      rails_best_practices_analysis.run
+      # TODO: new updates don't get along with rbp gem
+      # rails_best_practices_analysis.run
       model_diagram_analysis.run
       code_coverage_analysis.run
       report.project.remove_github_hook(report) unless mark_as_analysed(report)

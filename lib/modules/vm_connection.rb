@@ -58,7 +58,8 @@ class VMConnection
     puts "\n\n\n ----------------- RUN TESTS \n\n\n"
 
     execute_in_rails_app(["RAILS_ENV=test bin/rake db:migrate"])
-    execute_in_rails_app(["RAILS_ENV=test bundle exec rake test"])
+    # TODO: add desired test framework to .gc.yml
+    # execute_in_rails_app(["RAILS_ENV=test bundle exec rake test"])
     execute_in_rails_app(["RAILS_ENV=test bundle exec rspec"])
 
     last_run_json_path = File.join(rails_fullpath, "coverage", ".last_run.json")

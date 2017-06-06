@@ -62,7 +62,7 @@ var code_coverage_json = <%= raw project.last_percents(@number_of_percents) %>;
   <p class="text-muted">Code coverage diagram not available</p>
 <% end %>
 
-<% if last_report.rails_best_practices_analysis %>
+<% if last_report.rails_best_practices_analysis.score %>
   <div class="row">
     <div class="col-md-12">
       <h4>Rails best practices score</h4>
